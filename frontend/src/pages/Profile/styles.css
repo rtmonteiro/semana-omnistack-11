@@ -72,6 +72,7 @@
   display: block;
   margin-bottom: 16px;
   color: #41414d;
+  text-transform: uppercase;
 }
 
 .profile-container ul li p + strong {
