@@ -11,11 +11,10 @@ import styles from './styles';
 export default function Detail() {
   const navigation = useNavigation();
   const route = useRoute();
-  const message = `Olá ${incident.name}, estou entrando em contato pois gostaria de ajudar no caso: '${incident.title}' com o valor de ${Intl.NumberFormat('pt-BR', {style: 'currency', currency: 'BRL'}).format(incident.value)}`;
-  const phoneNumber = '5527981149278';
-
-
+  
   const incident = route.params.incident;
+
+  const message = `Olá ${incident.name}, estou entrando em contato pois gostaria de ajudar no caso: '${incident.title}' com o valor de ${Intl.NumberFormat('pt-BR', {style: 'currency', currency: 'BRL'}).format(incident.value)}`;
 
   function navigateBack() {
     navigation.goBack();
