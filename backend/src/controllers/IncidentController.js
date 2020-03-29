@@ -7,7 +7,7 @@ module.exports = {
     const [count] = await connection('incidents').count();
 
     const incidents = await connection('incidents')
-      .join('ongs', 'ong_id', '=', 'incidents.ong_id')
+      .join('ongs', 'ongs_id', '=', 'incidents.ong_id')
       .limit(5)
       .offset((page - 1) * 5)
       .select([
@@ -47,8 +47,12 @@ module.exports = {
       .select('ong_id')
       .first();
 
+    if (!incident) {
+      return res.status(400).json({ error: 'This case does not exists.' });
+    }
+
     if (incident.ong_id !== ong_id) {
-      return res.status(401).json({error: 'Operation not permitted. '});
+      return res.status(401).json({ error: 'Operation not permitted.' });
     }
 
     await connection('incidents').where('id', id).delete();
